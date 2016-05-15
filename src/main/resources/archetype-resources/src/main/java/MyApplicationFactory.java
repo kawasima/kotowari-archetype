@@ -6,6 +6,10 @@ import enkan.config.ApplicationFactory;
 import enkan.endpoint.ResourceEndpoint;
 import enkan.predicate.NonePredicate;
 import enkan.middleware.*;
+import enkan.middleware.devel.HttpStatusCatMiddleware;
+import enkan.middleware.devel.StacktraceMiddleware;
+import enkan.middleware.devel.TraceWebMiddleware;
+import enkan.middleware.doma2.DomaTransactionMiddleware;
 import kotowari.middleware.*;
 import enkan.system.inject.ComponentInjector;
 import kotowari.routing.Routes;
@@ -35,6 +39,8 @@ public class MyApplicationFactory implements ApplicationFactory {
         app.use(new NestedParamsMiddleware());
         app.use(new CookiesMiddleware());
         app.use(new SessionMiddleware());
+        app.use(new ContentNegotiationMiddleware());
+
         app.use(new ResourceMiddleware());
         app.use(new RenderTemplateMiddleware());
         app.use(new RoutingMiddleware(routes));
@@ -42,8 +48,8 @@ public class MyApplicationFactory implements ApplicationFactory {
         app.use(new DomaTransactionMiddleware<>());
 #end
         app.use(new FormMiddleware());
+        app.use(new SerDesMiddleware());
         app.use(new ValidateFormMiddleware());
-        app.use(new HtmlRenderer());
         app.use(new ControllerInvokerMiddleware(injector));
 
         return app;

@@ -4,8 +4,23 @@ import enkan.Env;
 import enkan.collection.OptionMap;
 import enkan.config.EnkanSystemFactory;
 import enkan.system.EnkanSystem;
-import enkan.component.*;
-
+import enkan.component.ApplicationComponent;
+#if ($ORMapper == "doma2")
+import enkan.component.doma2.DomaProvider;
+#end
+import enkan.component.jackson.JacksonBeansConverter;
+import enkan.component.flyway.FlywayMigration;
+#if ($datasource == "HikariCP")
+import enkan.component.hikaricp.HikariCPComponent;
+#end
+#if ($template == "freemarker")
+import enkan.component.freemarker.FreemarkerTemplateEngine;
+#end
+#if ($webServer == "undertow")
+import enkan.component.undertow.UndertowComponent;
+#elseif ($webServer == "jetty")
+import enkan.component.jetty.JettyComponent;
+#end
 import static enkan.component.ComponentRelationship.component;
 import static enkan.util.BeanBuilder.builder;
 
