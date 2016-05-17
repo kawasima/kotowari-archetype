@@ -2,6 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
@@ -12,24 +18,24 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <enkan.version>0.1.0-SNAPSHOT</enkan.version>
+        <enkan.version>0.1.0-beta1</enkan.version>
 #if ($webServer == "undertow")
-        <enkan.undertow.version>0.1.0-SNAPSHOT</enkan.undertow.version>
+        <enkan.undertow.version>0.1.0-beta1</enkan.undertow.version>
 #elseif ($webServer == "jetty")
-        <enkan.jetty.version>0.1.0-SNAPSHOT</enkan.jetty.version>
+        <enkan.jetty.version>0.1.0-beta1</enkan.jetty.version>
 #end
 #if ($template == "freemarker")
-        <enkan.freemarker.version>0.1.0-SNAPSHOT</enkan.freemarker.version>
+        <enkan.freemarker.version>0.1.0-beta1</enkan.freemarker.version>
 #end
-        <enkan.flyway.version>0.1.0-SNAPSHOT</enkan.flyway.version>
+        <enkan.flyway.version>0.1.0-beta1</enkan.flyway.version>
 #if ($ORMapper == "doma2")
-        <enkan.doma2.version>0.1.0-SNAPSHOT</enkan.doma2.version>
+        <enkan.doma2.version>0.1.0-beta1</enkan.doma2.version>
 #end
 #if ($datasource == "HikariCP")
-        <enkan.HikariCP.version>0.1.0-SNAPSHOT</enkan.HikariCP.version>
+        <enkan.HikariCP.version>0.1.0-beta1</enkan.HikariCP.version>
 #end
-        <enkan.jackson.version>0.1.0-SNAPSHOT</enkan.jackson.version>
-        <kotowari.version>0.1.0-SNAPSHOT</kotowari.version>
+        <enkan.jackson.version>0.1.0-beta1</enkan.jackson.version>
+        <kotowari.version>0.1.0-beta1</kotowari.version>
     </properties>
 
     <build>

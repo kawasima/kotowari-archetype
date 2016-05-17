@@ -6,17 +6,19 @@ import enkan.config.ApplicationFactory;
 import enkan.endpoint.ResourceEndpoint;
 import enkan.predicate.NonePredicate;
 import enkan.middleware.*;
-import enkan.middleware.devel.HttpStatusCatMiddleware;
-import enkan.middleware.devel.StacktraceMiddleware;
-import enkan.middleware.devel.TraceWebMiddleware;
+import enkan.middleware.devel.*;
 import enkan.middleware.doma2.DomaTransactionMiddleware;
 import kotowari.middleware.*;
+import kotowari.middleware.serdes.ToStringBodyWriter;
 import enkan.system.inject.ComponentInjector;
 import kotowari.routing.Routes;
 import ${package}.controller.IndexController;
 
+import static enkan.util.BeanBuilder.builder;
+import static enkan.util.Predicates.*;
+
 /**
- * @author kawasima
+ * @author [It's you]
  */
 public class MyApplicationFactory implements ApplicationFactory {
     @Override
@@ -28,10 +30,12 @@ public class MyApplicationFactory implements ApplicationFactory {
         }).compile();
 
         app.use(new DefaultCharsetMiddleware());
-        app.use(new NonePredicate(), new ServiceUnavailableMiddleware<>(new ResourceEndpoint("/public/html/503.html")));
-        app.use(new StacktraceMiddleware());
+        app.use(NONE, new ServiceUnavailableMiddleware<>(new ResourceEndpoint("/public/html/503.html")));
+        app.use(envIn("development"), new StacktraceMiddleware());
+        app.use(envIn("development"), new TraceWebMiddleware());
         app.use(new TraceMiddleware<>());
         app.use(new ContentTypeMiddleware());
+        app.use(envIn("development"), new HttpStatusCatMiddleware());
         app.use(new ParamsMiddleware());
         app.use(new MultipartParamsMiddleware());
         app.use(new MethodOverrideMiddleware());
@@ -48,7 +52,9 @@ public class MyApplicationFactory implements ApplicationFactory {
         app.use(new DomaTransactionMiddleware<>());
 #end
         app.use(new FormMiddleware());
-        app.use(new SerDesMiddleware());
+        app.use(builder(new SerDesMiddleware())
+                .set(SerDesMiddleware::setBodyWriters, new ToStringBodyWriter())
+                .build());
         app.use(new ValidateFormMiddleware());
         app.use(new ControllerInvokerMiddleware(injector));
 
