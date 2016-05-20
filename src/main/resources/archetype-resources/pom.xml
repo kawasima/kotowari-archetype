@@ -36,6 +36,7 @@
 #end
         <enkan.jackson.version>0.1.0-beta1</enkan.jackson.version>
         <kotowari.version>0.1.0-beta1</kotowari.version>
+        <kotowari.scaffold.version>0.1.0-beta2</kotowari.scaffold.version>
     </properties>
 
     <build>
@@ -56,7 +57,7 @@
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-system</artifactId>
-            <version>${enkan.version}</version>
+            <version>0.1.0-beta2</version>
         </dependency>
         <dependency>
             <groupId>net.unit8.enkan</groupId>
@@ -66,7 +67,7 @@
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-devel</artifactId>
-            <version>${enkan.version}</version>
+            <version>0.1.0-beta2</version>
         </dependency>
         <dependency>
             <groupId>net.unit8.enkan</groupId>
@@ -76,7 +77,7 @@
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>kotowari-scaffold</artifactId>
-            <version>${kotowari.version}</version>
+            <version>${kotowari.scaffold.version}</version>
         </dependency>
 
         #if ($webServer == "undertow")
