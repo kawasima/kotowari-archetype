@@ -42,7 +42,7 @@ public class MyExampleSystemFactory implements EnkanSystemFactory {
 #if ($datasource == "HikariCP")
                 "datasource", new HikariCPComponent(OptionMap.of("uri", "jdbc:h2:mem:test")),
 #end
-                "app", new ApplicationComponent("${package}.MyApplicationFactory"),
+                "app", new ApplicationComponent(MyApplicationFactory.class.getName()),
 #if ($webServer == "undertow")
                 "http", builder(new UndertowComponent())
                         .set(UndertowComponent::setPort, Env.getInt("PORT", 3000))
