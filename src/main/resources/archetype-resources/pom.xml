@@ -79,7 +79,7 @@
             <version>${kotowari.version}</version>
         </dependency>
 
-        #if ($webServer == "undertow")
+#if ($webServer == "undertow")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-undertow</artifactId>
