@@ -17,9 +17,6 @@ import ${package}.controller.IndexController;
 import static enkan.util.BeanBuilder.builder;
 import static enkan.util.Predicates.*;
 
-/**
- * @author [It's you]
- */
 public class MyApplicationFactory implements ApplicationFactory {
     @Override
     public Application create(ComponentInjector injector) {
