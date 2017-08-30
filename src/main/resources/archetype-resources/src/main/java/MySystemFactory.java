@@ -24,10 +24,7 @@ import enkan.component.jetty.JettyComponent;
 import static enkan.component.ComponentRelationship.component;
 import static enkan.util.BeanBuilder.builder;
 
-/**
- * @author kawasima
- */
-public class MyExampleSystemFactory implements EnkanSystemFactory {
+public class MySystemFactory implements EnkanSystemFactory {
     @Override
     public EnkanSystem create() {
         return EnkanSystem.of(
