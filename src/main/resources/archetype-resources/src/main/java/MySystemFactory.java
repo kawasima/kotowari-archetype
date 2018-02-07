@@ -7,6 +7,8 @@ import enkan.system.EnkanSystem;
 import enkan.component.ApplicationComponent;
 #if ($ORMapper == "doma2")
 import enkan.component.doma2.DomaProvider;
+import org.seasar.doma.jdbc.Naming;
+import org.seasar.doma.jdbc.dialect.H2Dialect;
 #end
 import enkan.component.jackson.JacksonBeansConverter;
 import enkan.component.flyway.FlywayMigration;
@@ -29,15 +31,20 @@ public class MySystemFactory implements EnkanSystemFactory {
     public EnkanSystem create() {
         return EnkanSystem.of(
 #if ($ORMapper == "doma2")
-                "doma", new DomaProvider(),
+                "doma", builder(new DomaProvider())
+                        .set(DomaProvider::setDialect, new H2Dialect())
+                        .set(DomaProvider::setNaming, Naming.SNAKE_LOWER_CASE)
+                        .build(),
 #end
                 "jackson", new JacksonBeansConverter(),
+#if ($migration == "flyway")
                 "flyway", new FlywayMigration(),
+#end
 #if ($template == "freemarker")
                 "template", new FreemarkerTemplateEngine(),
 #end
 #if ($datasource == "HikariCP")
-                "datasource", new HikariCPComponent(OptionMap.of("uri", "jdbc:h2:mem:test")),
+                "datasource", new HikariCPComponent(OptionMap.of("uri", "jdbc:h2:mem:test;AUTOCOMMIT=FALSE;DB_CLOSE_DELAY=-1")),
 #end
                 "app", new ApplicationComponent("${package}.MyApplicationFactory"),
 #if ($webServer == "undertow")

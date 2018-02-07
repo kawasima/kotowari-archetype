@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <groupId>test</groupId>
+    <artifactId>test</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Kotowari application</name>
@@ -13,24 +13,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <enkan.version>0.6.0-SNAPSHOT</enkan.version>
-#if ($webServer == "undertow")
         <enkan.undertow.version>0.6.0-SNAPSHOT</enkan.undertow.version>
-#elseif ($webServer == "jetty")
-        <enkan.jetty.version>0.6.0-SNAPSHOT</enkan.jetty.version>
-#end
-#if ($template == "freemarker")
         <enkan.freemarker.version>0.6.0-SNAPSHOT</enkan.freemarker.version>
-#end
-#if ($template == "thymeleaf")
-        <enkan.thymeleaf.version>0.6.0-SNAPSHOT</enkan.thymeleaf.version>
-#end
         <enkan.flyway.version>0.6.0-SNAPSHOT</enkan.flyway.version>
-#if ($ORMapper == "doma2")
         <enkan.doma2.version>0.6.0-SNAPSHOT</enkan.doma2.version>
-#end
-#if ($datasource == "HikariCP")
         <enkan.HikariCP.version>0.6.0-SNAPSHOT</enkan.HikariCP.version>
-#end
         <enkan.jackson.version>0.6.0-SNAPSHOT</enkan.jackson.version>
         <kotowari.version>0.6.0-SNAPSHOT</kotowari.version>
         <kotowari.scaffold.version>0.6.0-SNAPSHOT</kotowari.scaffold.version>
@@ -58,59 +45,36 @@
             <version>${kotowari.scaffold.version}</version>
         </dependency>
 
-#if ($webServer == "undertow")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-undertow</artifactId>
             <version>${enkan.undertow.version}</version>
         </dependency>
-#elseif ($webServer == "jetty")
-        <dependency>
-            <groupId>net.unit8.enkan</groupId>
-            <artifactId>enkan-component-jetty</artifactId>
-            <version>${enkan.jetty.version}</version>
-        </dependency>
-#end
-#if ($ORMapper == "doma2")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-doma2</artifactId>
             <version>${enkan.doma2.version}</version>
         </dependency>
-#end
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-jackson</artifactId>
             <version>${enkan.jackson.version}</version>
         </dependency>
-#if ($datasource == "HikariCP")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-HikariCP</artifactId>
             <version>${enkan.HikariCP.version}</version>
         </dependency>
-#end
-#if ($migration == "flyway")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-flyway</artifactId>
             <version>${enkan.flyway.version}</version>
         </dependency>
-#end
-#if ($template == "freemarker")
         <dependency>
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-freemarker</artifactId>
             <version>${enkan.freemarker.version}</version>
         </dependency>
-#end
-#if ($template == "thymeleaf")
-        <dependency>
-            <groupId>net.unit8.enkan</groupId>
-            <artifactId>enkan-component-thymeleaf</artifactId>
-            <version>${enkan.thymeleaf.version}</version>
-        </dependency>
-#end
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -145,7 +109,7 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.6.0</version>
                     <configuration>
-                        <mainClass>${package}.DevMain</mainClass>
+                        <mainClass>test.DevMain</mainClass>
                         <cleanupDaemonThreads>false</cleanupDaemonThreads>
                     </configuration>
                 </plugin>

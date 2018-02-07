@@ -52,7 +52,7 @@ public class MyApplicationFactory implements ApplicationFactory {
         app.use(builder(new SerDesMiddleware())
                 .set(SerDesMiddleware::setBodyWriters, new ToStringBodyWriter())
                 .build());
-        app.use(new ValidateFormMiddleware());
+        app.use(new ValidateBodyMiddleware());
         app.use(new ControllerInvokerMiddleware(injector));
 
         return app;
