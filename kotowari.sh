@@ -1,40 +1,5 @@
 #!/usr/bin/env bash
 
-lower()
-{
-    tr '[:upper:]' '[:lower:]'
-}
-truth_echo()
-{
-    if truth "$1"; then
-        [[ $2 ]] && echo "$2"
-    else
-        [[ $3 ]] && echo "$3"
-    fi
-}
-truth_value()
-{
-    truth_echo "$1" 1 0
-}
-
-truth()
-{
-    case $(lower <<<"$1") in
-        yes|y|true|t|on|1) return 0 ;;
-    esac
-    return 1
-}
-
-interactive()
-{
-    if (( $# == 0 )); then
-        truth $INTERACTIVE && return 0
-        return 1
-    fi
-
-    export INTERACTIVE=$(truth_value $1)
-}
-
 choice()
 {
     local p="Select from these choices"
@@ -49,10 +14,6 @@ choice()
             c) c=1 ;;
         esac
     done && shift $(($OPTIND - 1))
-
-    if truth $c && ! interactive; then
-        return
-    fi
 
     if (( $# <= 1 )); then
         echo "$1"
