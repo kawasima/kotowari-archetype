@@ -28,6 +28,9 @@
 #if ($ORMapper == "doma2")
         <enkan.doma2.version>0.6.0-SNAPSHOT</enkan.doma2.version>
 #end
+#if ($ORMapper == "eclipselink")
+        <enkan.eclipselink.version>0.6.0-SNAPSHOT</enkan.eclipselink.version>
+#end
 #if ($datasource == "HikariCP")
         <enkan.HikariCP.version>0.6.0-SNAPSHOT</enkan.HikariCP.version>
 #end
@@ -76,6 +79,18 @@
             <groupId>net.unit8.enkan</groupId>
             <artifactId>enkan-component-doma2</artifactId>
             <version>${enkan.doma2.version}</version>
+        </dependency>
+#end
+#if ($ORMapper == "eclipselink")
+        <dependency>
+            <groupId>net.unit8.enkan</groupId>
+            <artifactId>enkan-component-eclipselink</artifactId>
+            <version>${enkan.eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.unit8.enkan</groupId>
+            <artifactId>kotowari-jpa</artifactId>
+            <version>${kotowari.version}</version>
         </dependency>
 #end
         <dependency>

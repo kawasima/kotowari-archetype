@@ -49,7 +49,7 @@ ARGS+=$(choice -p "Which migration component do you use?" \
                "flyway" "No thank you")
 ARGS+=$(choice -p "Which O/R mapper component do you use?" \
                -d "ORMapper" \
-               "doma2" "No thank you")
+               "doma2" "eclipselink" "No thank you")
 
 echo $ARGS
 
