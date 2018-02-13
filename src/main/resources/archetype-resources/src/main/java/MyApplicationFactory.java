@@ -41,20 +41,20 @@ public class MyApplicationFactory implements ApplicationFactory {
         app.use(envIn("development"), new LazyLoadMiddleware<>("enkan.middleware.devel.StacktraceMiddleware"));
         app.use(envIn("development"), new LazyLoadMiddleware<>("enkan.middleware.devel.TraceWebMiddleware"));
         app.use(new TraceMiddleware<>());
-        app.use(new ContentTypeMiddleware());
+        app.use(new ContentTypeMiddleware<>());
         app.use(envIn("development"), new LazyLoadMiddleware<>("enkan.middleware.devel.HttpStatusCatMiddleware"));
-        app.use(new ParamsMiddleware());
-        app.use(new MultipartParamsMiddleware());
-        app.use(new MethodOverrideMiddleware());
-        app.use(new NormalizationMiddleware());
-        app.use(new NestedParamsMiddleware());
-        app.use(new CookiesMiddleware());
-        app.use(new SessionMiddleware());
-        app.use(new ContentNegotiationMiddleware());
+        app.use(new ParamsMiddleware<>());
+        app.use(new MultipartParamsMiddleware<>());
+        app.use(new MethodOverrideMiddleware<>());
+        app.use(new NormalizationMiddleware<>());
+        app.use(new NestedParamsMiddleware<>());
+        app.use(new CookiesMiddleware<>());
+        app.use(new SessionMiddleware<>());
+        app.use(new ContentNegotiationMiddleware<>());
 
-        app.use(new ResourceMiddleware());
-        app.use(new RenderTemplateMiddleware());
-        app.use(new RoutingMiddleware(routes));
+        app.use(new ResourceMiddleware<>());
+        app.use(new RenderTemplateMiddleware<>());
+        app.use(new RoutingMiddleware<>(routes));
 #if ($ORMapper == "doma2")
         app.use(new DomaTransactionMiddleware<>());
 #end
@@ -64,26 +64,25 @@ public class MyApplicationFactory implements ApplicationFactory {
 
         List<ParameterInjector<?>> parameterInjectors = ParameterUtils.getDefaultParameterInjectors();
         parameterInjectors.add(new EntityManagerInjector());
-        app.use(builder(new FormMiddleware())
+        app.use(builder(new FormMiddleware<>())
                 .set(FormMiddleware::setParameterInjectors, parameterInjectors)
                 .build());
-        app.use(builder(new SerDesMiddleware())
+        app.use(builder(new SerDesMiddleware<>())
                 .set(SerDesMiddleware::setBodyWriters, new ToStringBodyWriter())
                 .set(SerDesMiddleware::setParameterInjectors, parameterInjectors)
                 .build());
-        app.use(new ValidateBodyMiddleware());
-        app.use(builder(new ControllerInvokerMiddleware(injector))
+        app.use(new ValidateBodyMiddleware<>());
+        app.use(builder(new ControllerInvokerMiddleware<>(injector))
                 .set(ControllerInvokerMiddleware::setParameterInjectors, parameterInjectors)
                 .build());
 #else
-        app.use(new FormMiddleware());
-        app.use(builder(new SerDesMiddleware())
+        app.use(new FormMiddleware<>());
+        app.use(builder(new SerDesMiddleware<>())
                 .set(SerDesMiddleware::setBodyWriters, new ToStringBodyWriter())
                 .build());
-        app.use(new ValidateBodyMiddleware());
-        app.use(new ControllerInvokerMiddleware(injector));
+        app.use(new ValidateBodyMiddleware<>());
+        app.use(new ControllerInvokerMiddleware<>(injector));
 #end
-
 
         return app;
     }

@@ -32,7 +32,12 @@ choice()
     done
 }
 
-interactive y
+Purple='\033[0;35m'
+White='\033[0;37m'
+echo -e "${Purple}╔═╗${White}┌┐┌┬┌─┌─┐┌┐┌ ┬ ${Purple}╦╔═${White}┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬";
+echo -e "${Purple}║╣ ${White}│││├┴┐├─┤│││┌┼─${Purple}╠╩╗${White}│ │ │ │ ││││├─┤├┬┘│";
+echo -e "${Purple}╚═╝${White}┘└┘┴ ┴┴ ┴┘└┘└┘ ${Purple}╩ ╩${White}└─┘ ┴ └─┘└┴┘┴ ┴┴└─┴";
+echo ""
 
 ARGS=""
 ARGS+=$(choice -p "Which web server component do you use?" \
