@@ -36,8 +36,8 @@ public class MyApplicationFactory implements ApplicationFactory {
             r.get("/").to(IndexController.class, "index");
         }).compile();
 
-        app.use(new DefaultCharsetMiddleware());
-        app.use(NONE, new ServiceUnavailableMiddleware<>(new ResourceEndpoint("/public/html/503.html")));
+        app.use(new DefaultCharsetMiddleware<>());
+        app.use(none(), new ServiceUnavailableMiddleware<>(new ResourceEndpoint("/public/html/503.html")));
         app.use(envIn("development"), new LazyLoadMiddleware<>("enkan.middleware.devel.StacktraceMiddleware"));
         app.use(envIn("development"), new LazyLoadMiddleware<>("enkan.middleware.devel.TraceWebMiddleware"));
         app.use(new TraceMiddleware<>());
