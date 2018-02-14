@@ -61,5 +61,5 @@ echo $ARGS
 mvn -e archetype:generate \
     -DarchetypeGroupId=net.unit8.enkan \
     -DarchetypeArtifactId=kotowari-archetype \
-    -DarchetypeVersion=0.6.0-beta2 \
+    -DarchetypeVersion=0.6.0-SNAPSHOT \
     -DarchetypeCatalog=internal $ARGS

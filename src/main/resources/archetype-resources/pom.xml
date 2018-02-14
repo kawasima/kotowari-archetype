@@ -13,31 +13,31 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <enkan.version>0.6.0-beta2</enkan.version>
+        <enkan.version>0.6.0-SNAPSHOT</enkan.version>
 #if ($webServer == "undertow")
-        <enkan.undertow.version>0.6.0-beta2</enkan.undertow.version>
+        <enkan.undertow.version>0.6.0-SNAPSHOT</enkan.undertow.version>
 #elseif ($webServer == "jetty")
-        <enkan.jetty.version>0.6.0-beta2</enkan.jetty.version>
+        <enkan.jetty.version>0.6.0-SNAPSHOT</enkan.jetty.version>
 #end
 #if ($template == "freemarker")
-        <enkan.freemarker.version>0.6.0-beta2</enkan.freemarker.version>
+        <enkan.freemarker.version>0.6.0-SNAPSHOT</enkan.freemarker.version>
 #end
 #if ($template == "thymeleaf")
-        <enkan.thymeleaf.version>0.6.0-beta2</enkan.thymeleaf.version>
+        <enkan.thymeleaf.version>0.6.0-SNAPSHOT</enkan.thymeleaf.version>
 #end
-        <enkan.flyway.version>0.6.0-beta2</enkan.flyway.version>
+        <enkan.flyway.version>0.6.0-SNAPSHOT</enkan.flyway.version>
 #if ($ORMapper == "doma2")
-        <enkan.doma2.version>0.6.0-beta2</enkan.doma2.version>
+        <enkan.doma2.version>0.6.0-SNAPSHOT</enkan.doma2.version>
 #end
 #if ($ORMapper == "eclipselink")
-        <enkan.eclipselink.version>0.6.0-beta2</enkan.eclipselink.version>
+        <enkan.eclipselink.version>0.6.0-SNAPSHOT</enkan.eclipselink.version>
 #end
 #if ($datasource == "HikariCP")
-        <enkan.HikariCP.version>0.6.0-beta2</enkan.HikariCP.version>
+        <enkan.HikariCP.version>0.6.0-SNAPSHOT</enkan.HikariCP.version>
 #end
-        <enkan.jackson.version>0.6.0-beta2</enkan.jackson.version>
-        <kotowari.version>0.6.0-beta2</kotowari.version>
-        <kotowari.scaffold.version>0.6.0-beta2</kotowari.scaffold.version>
+        <enkan.jackson.version>0.6.0-SNAPSHOT</enkan.jackson.version>
+        <kotowari.version>0.6.0-SNAPSHOT</kotowari.version>
+        <kotowari.scaffold.version>0.6.0-SNAPSHOT</kotowari.scaffold.version>
     </properties>
 
     <dependencies>
