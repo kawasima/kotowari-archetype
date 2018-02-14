@@ -60,6 +60,11 @@ public class MySystemFactory implements EnkanSystemFactory {
                         .set(UndertowComponent::setPort, Env.getInt("PORT", 3000))
                         .build()
 #end
+#if ($webServer == "jetty")
+            "http", builder(new JettyComponent())
+                    .set(JettyComponent::setPort, Env.getInt("PORT", 3000))
+                    .build()
+#end
         ).relationships(
                 component("http").using("app"),
                 component("app").using("datasource", "template", "orm", "jackson"),
